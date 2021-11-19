@@ -13,6 +13,7 @@ client.on('interactionCreate', async interaction => {
         const id = interaction.options.getString('아이디');
         const pw = interaction.options.getString('비밀번호');
         let data = await getData(id, pw);
+        await getShop(data["userId"], data["ent_token"], data["accessToken"],"KR");
     }
 })
 
@@ -99,7 +100,7 @@ async function getData(username, pw) {
     }
 }
 
-/*async function getShop(userid, ent_token, access_token, region) {
+async function getShop(userid, ent_token, access_token, region) {
     const shop = (
         await axios({
             url: `https://pd.${region}.a.pvp.net/store/v2/storefront/${userid}`,
@@ -126,4 +127,4 @@ async function getData(username, pw) {
     ).data;
         console.log(singleItems[i]);
     }
-}*/
+}
