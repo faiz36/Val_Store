@@ -1,4 +1,4 @@
-const { Client } = require('discord.js');
+const { Client, MessageEmbed} = require('discord.js');
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES"], partials: ["CHANNEL"] });
 const axios = require('axios');
 client.once('ready', () => {
@@ -12,12 +12,22 @@ client.on('interactionCreate', async interaction => {
     if (interaction.commandName === "로그인") {
         const id = interaction.options.getString('아이디');
         const pw = interaction.options.getString('비밀번호');
+        const region = interaction.options.getString('지역');
+        interaction.reply("잠시후 나오는 결과를 확인해 주세요!");
         let data = await getData(id, pw);
-        await getShop(data["userId"], data["ent_token"], data["accessToken"],"KR");
+        let shop = await getShop(data["userId"], data["ent_token"], data["accessToken"],region);
+        for (var i = 0; i < 4; i++){
+            let item = shop[i];
+            let embed = new MessageEmbed()
+                .setTitle(item["displayName"])
+                .setImage(item["displayIcon"])
+                .setAuthor(interaction.user.username, interaction.user.avatarURL())
+            interaction.channel.send({embeds: [embed]});
+        }
     }
 })
 
-client.login('NTE5NzQyNjU3MTg3MDIwODAw.XAdeEQ.fTH2Rf7UO0vBz_bJ67WIcH9LWiM');
+client.login('OTA5OTQxMzIyNDgyMzM5OTIw.YZLm5Q.HeGEKLcZ7nZ7ky8O2qQf96NCXK0');
 
 async function getData(username, pw) {
     let accessToken;
@@ -125,6 +135,6 @@ async function getShop(userid, ent_token, access_token, region) {
                 })
             ).data
     ).data;
-        console.log(singleItems[i]);
     }
+    return singleItems;
 }
