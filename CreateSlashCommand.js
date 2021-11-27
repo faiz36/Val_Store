@@ -1,9 +1,9 @@
 const { REST} = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const {SlashCommandBuilder} = require("@discordjs/builders");
-const token = 'OTA5OTQxMzIyNDgyMzM5OTIw.YZLm5Q.HeGEKLcZ7nZ7ky8O2qQf96NCXK0'
-const clientId = '909941322482339920';
-const guildId = '727655744094339113';
+const token = 'Your Bot Token' // PLS CHANGE YOUR BOT TOKEN
+const clientId = 'Your Bot Client_Id'; // PLS CHANGE YOUR BOT CLIENT_ID
+const guildId = 'Your Discord Server ID'; // PLS CHANGE YOUR DISCORD SERVER ID
 
 const rest = new REST({version: '9'}).setToken(token);
 
