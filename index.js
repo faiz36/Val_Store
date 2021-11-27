@@ -1,6 +1,7 @@
 const { Client, MessageEmbed} = require('discord.js');
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES"], partials: ["CHANNEL"] });
 const axios = require('axios');
+const token = 'Your Bot Token' // PLS CHANGE YOUR BOT TOKEN
 client.once('ready', () => {
     console.log("준비됨!");
 });
@@ -27,7 +28,7 @@ client.on('interactionCreate', async interaction => {
     }
 })
 
-client.login('OTA5OTQxMzIyNDgyMzM5OTIw.YZLm5Q.HeGEKLcZ7nZ7ky8O2qQf96NCXK0');
+client.login(token);
 
 async function getData(username, pw) {
     let accessToken;
