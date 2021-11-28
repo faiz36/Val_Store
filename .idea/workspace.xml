@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="276ad3ca-ded5-4597-8f24-a62197c74e7a" name="변경" comment="✨Add Valorant Shop API">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="276ad3ca-ded5-4597-8f24-a62197c74e7a" name="변경" comment="✨Add Embed Text">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CreateSlashCommand.js" beforeDir="false" afterPath="$PROJECT_DIR$/CreateSlashCommand.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +47,7 @@
     <property name="project.structure.last.edited" value="문제" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RunManager">
@@ -66,6 +65,10 @@
       <updated>1637308246014</updated>
       <workItem from="1637308247929" duration="7809000" />
       <workItem from="1637795846494" duration="17000" />
+      <workItem from="1637795877236" duration="332000" />
+      <workItem from="1637915201814" duration="5019000" />
+      <workItem from="1638088178450" duration="1281000" />
+      <workItem from="1638091421442" duration="325000" />
     </task>
     <task id="LOCAL-00001" summary="✨Add Valorant Shop API">
       <created>1637310396773</created>
@@ -88,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637310584998</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="✨Add Embed Text">
+      <created>1637796059606</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1637796059606</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,7 +118,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="✨Add Valorant Shop API" />
-    <option name="LAST_COMMIT_MESSAGE" value="✨Add Valorant Shop API" />
+    <MESSAGE value="✨Add Embed Text" />
+    <option name="LAST_COMMIT_MESSAGE" value="✨Add Embed Text" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

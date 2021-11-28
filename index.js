@@ -1,7 +1,8 @@
 const { Client, MessageEmbed} = require('discord.js');
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES"], partials: ["CHANNEL"] });
 const axios = require('axios');
-const token = 'Your Bot Token' // PLS CHANGE YOUR BOT TOKEN
+const fs = require('fs');
+const token = "Your Bot Token" // PLS CHANGE THIS TO YOUR BOT TOKEN
 client.once('ready', () => {
     console.log("준비됨!");
 });
@@ -10,14 +11,20 @@ client.on('interactionCreate', async interaction => {
 
     if (!interaction.isCommand()) return;
 
-    if (interaction.commandName === "로그인") {
-        const id = interaction.options.getString('아이디');
-        const pw = interaction.options.getString('비밀번호');
+    let data;
+    let dt;
+    if (interaction.commandName === "상점확인") {
         const region = interaction.options.getString('지역');
-        interaction.reply("잠시후 나오는 결과를 확인해 주세요!");
-        let data = await getData(id, pw);
-        let shop = await getShop(data["userId"], data["ent_token"], data["accessToken"],region);
-        for (var i = 0; i < 4; i++){
+        dt = fs.readFileSync(`./data/${interaction.user.id}.json`, 'utf-8')
+        jsdt = JSON.parse(dt);
+        data = await getData(jsdt["id"], jsdt["pw"]);
+        if (data["error"] === true){
+            interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
+            return;
+        }
+        interaction.reply("곧 나오는 결과를 확인해 주세요!")
+        let shop = await getShop(data["userId"], data["ent_token"], data["accessToken"], region);
+        for (let i = 0; i < 4; i++) {
             let item = shop[i];
             let embed = new MessageEmbed()
                 .setTitle(item["displayName"])
@@ -26,6 +33,23 @@ client.on('interactionCreate', async interaction => {
             interaction.channel.send({embeds: [embed]});
         }
     }
+
+    if (interaction.commandName === "로그인") {
+
+        const id = interaction.options.getString('아이디');
+        const pw = interaction.options.getString('비밀번호');
+        let data = {
+            id: id,
+            pw: pw
+        }
+
+        const jsonData = JSON.stringify(data);
+        fs.writeFile(`./data/${interaction.user.id}.json`,jsonData,function (err) {
+            if (err) console.log(err);
+        })
+        interaction.reply({content: "저장되었습니다!", ephemeral: true});
+    }
+
 })
 
 client.login(token);
@@ -35,6 +59,7 @@ async function getData(username, pw) {
     let ent_token;
     let userId;
     let expiresIn;
+    let error;
     await axios({
         url: "https://auth.riotgames.com/api/v1/authorization",
         method: "POST",
@@ -65,7 +90,10 @@ async function getData(username, pw) {
                 withCredentials: true,
             })
         ).data;
-
+        if (res.error === 'auth_failure') {
+            error = true
+            return;
+        }
         const uri = res["response"]["parameters"]["uri"];
         const regexResult = uri.match(
             /access_token=((?:[a-zA-Z]|\d|\.|-|_)*).*id_token=((?:[a-zA-Z]|\d|\.|-|_)*).*expires_in=(\d*)/
@@ -103,11 +131,18 @@ async function getData(username, pw) {
             ).data
         ).sub;
     })
-    return {
-        accessToken,
-        ent_token,
-        userId,
-        expiresIn,
+    if (error === true){
+        return {
+            error: true
+        }
+    }else{
+        return {
+            accessToken,
+            ent_token,
+            userId,
+            expiresIn,
+            error: false
+        }
     }
 }
 
@@ -135,7 +170,7 @@ async function getShop(userid, ent_token, access_token, region) {
                     method: "GET",
                 })
             ).data
-    ).data;
+        ).data;
     }
     return singleItems;
 }
