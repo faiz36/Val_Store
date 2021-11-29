@@ -1,4 +1,4 @@
-const { Client, MessageEmbed} = require('discord.js');
+const { Client, MessageEmbed, MessageActionRow, MessageButton} = require('discord.js');
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES"], partials: ["CHANNEL"] });
 const axios = require('axios');
 const fs = require('fs');
@@ -34,6 +34,23 @@ client.on('interactionCreate', async interaction => {
         }
     }
 
+    if (interaction.commandName === "탈퇴"){
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setCustomId('yes')
+                    .setLabel('네')
+                    .setStyle('SUCCESS')
+            )
+            .addComponents(
+                new MessageButton()
+                    .setCustomId('no')
+                    .setLabel('아니요')
+                    .setStyle('DANGER')
+            );
+        await interaction.reply({content: "탈퇴하시겠습니까?(**10초 이내로 선택해주세요!**)",components: [row]})
+    }
+
     if (interaction.commandName === "로그인") {
 
         const id = interaction.options.getString('아이디');
@@ -50,6 +67,34 @@ client.on('interactionCreate', async interaction => {
         interaction.reply({content: "저장되었습니다!", ephemeral: true});
     }
 
+})
+
+client.on('interactionCreate', async int => {
+    if (!int.isButton()) return;
+
+    const yes = i => i.custom_id === 'yes' && i.user.id === '909941322482339920';
+    const no = i => i.custom_id === 'no' && i.user.id === '909941322482339920';
+
+    const ycollector = int.channel.createMessageComponentCollector({ yes, time: 1000*10});
+    const ncollector = int.channel.createMessageComponentCollector({ no });
+
+    ycollector.on('collect', async int => {
+        if (int.customId === 'yes') {
+            fs.unlink(`./data/${int.user.id}.json`,async function (err){
+                if (err){
+                    await int.update({content: "이미 존재하지 않습니다!",components: []})
+                }else{
+                    await int.update({content: "삭제되었습니다!",components: []})
+                }
+            })
+        }
+    });
+
+    ncollector.on('collect', async int => {
+        if (int.customId === 'no'){
+            await int.update({content: "취소되었습니다!",components: []})
+        }
+    })
 })
 
 client.login(token);
