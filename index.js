@@ -2,7 +2,9 @@ const { Client, MessageEmbed, MessageActionRow, MessageButton} = require('discor
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES"], partials: ["CHANNEL"] });
 const axios = require('axios');
 const fs = require('fs');
-const token = "Your Bot Token" // PLS CHANGE THIS TO YOUR BOT TOKEN
+require('dotenv').config();
+const token = config.env.token;
+const client_id = config.env.client;
 client.once('ready', () => {
     console.log("준비됨!");
 });
@@ -72,8 +74,8 @@ client.on('interactionCreate', async interaction => {
 client.on('interactionCreate', async int => {
     if (!int.isButton()) return;
 
-    const yes = i => i.custom_id === 'yes' && i.user.id === '909941322482339920';
-    const no = i => i.custom_id === 'no' && i.user.id === '909941322482339920';
+    const yes = i => i.custom_id === 'yes' && i.user.id === client_id;
+    const no = i => i.custom_id === 'no' && i.user.id === client_id;
 
     const ycollector = int.channel.createMessageComponentCollector({ yes, time: 1000*10});
     const ncollector = int.channel.createMessageComponentCollector({ no });

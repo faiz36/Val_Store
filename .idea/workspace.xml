@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="276ad3ca-ded5-4597-8f24-a62197c74e7a" name="변경" comment="✨Change README.md">
+    <list default="true" id="276ad3ca-ded5-4597-8f24-a62197c74e7a" name="변경" comment="✨Update /탈퇴 Service">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CreateSlashCommand.js" beforeDir="false" afterPath="$PROJECT_DIR$/CreateSlashCommand.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +72,9 @@
       <workItem from="1638088178450" duration="1281000" />
       <workItem from="1638091421442" duration="1316000" />
       <workItem from="1638170619002" duration="1029000" />
-      <workItem from="1638171660964" duration="602000" />
+      <workItem from="1638171660964" duration="844000" />
+      <workItem from="1638512007159" duration="1149000" />
+      <workItem from="1638513195240" duration="785000" />
     </task>
     <task id="LOCAL-00001" summary="✨Add Valorant Shop API">
       <created>1637310396773</created>
@@ -120,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638092725471</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="✨Update /탈퇴 Service">
+      <created>1638172497382</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1638172497382</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,7 +155,8 @@
     <MESSAGE value="✨Add Embed Text" />
     <MESSAGE value="✨Change /로그인, /상점확인" />
     <MESSAGE value="✨Change README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="✨Change README.md" />
+    <MESSAGE value="✨Update /탈퇴 Service" />
+    <option name="LAST_COMMIT_MESSAGE" value="✨Update /탈퇴 Service" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
