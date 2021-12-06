@@ -3,8 +3,8 @@ const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAG
 const axios = require('axios');
 const fs = require('fs');
 require('dotenv').config();
-const token = config.env.token;
-const client_id = config.env.client;
+const token = process.env.token;
+const client_id = process.env.client;
 client.once('ready', () => {
     console.log("준비됨!");
 });
