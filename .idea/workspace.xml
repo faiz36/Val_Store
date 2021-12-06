@@ -68,6 +68,7 @@
       <workItem from="1638171660964" duration="844000" />
       <workItem from="1638512007159" duration="1149000" />
       <workItem from="1638513195240" duration="868000" />
+      <workItem from="1638746359280" duration="301000" />
     </task>
     <task id="LOCAL-00001" summary="✨Add Valorant Shop API">
       <created>1637310396773</created>
@@ -132,7 +133,35 @@
       <option name="project" value="LOCAL" />
       <updated>1638514014011</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="✨Update">
+      <created>1638746488322</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1638746488322</updated>
+    </task>
+    <task id="LOCAL-00011" summary="✨Update">
+      <created>1638746543941</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1638746543941</updated>
+    </task>
+    <task id="LOCAL-00012" summary="✨Update">
+      <created>1638746590067</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1638746590067</updated>
+    </task>
+    <task id="LOCAL-00013" summary="✨Update">
+      <created>1638746656432</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1638746656432</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

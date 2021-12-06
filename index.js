@@ -32,6 +32,7 @@ client.on('interactionCreate', async interaction => {
                 .setTitle(item["displayName"])
                 .setImage(item["displayIcon"])
                 .setAuthor(interaction.user.username, interaction.user.avatarURL())
+                .addField('지역',region)
             interaction.channel.send({embeds: [embed]});
         }
     }
