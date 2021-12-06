@@ -2,7 +2,7 @@ const { Client, MessageEmbed, MessageActionRow, MessageButton} = require('discor
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES"], partials: ["CHANNEL"] });
 const axios = require('axios');
 const fs = require('fs');
-require('dotenv').config();
+const { token, client } = require('./config.json')
 const token = process.env.token;
 const client_id = process.env.client;
 client.once('ready', () => {
