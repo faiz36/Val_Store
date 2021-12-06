@@ -1,14 +1,10 @@
 const { REST} = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const {SlashCommandBuilder} = require("@discordjs/builders");
-require('dotenv').config();
-const token = config.env.token // PLS CHANGE THIS TO YOUR BOT TOKEN
-const clientId = config.env.client; // PLS CHANGE THIS TO YOUR DISCORD BOT CLIENT_ID
-const guildId = config.env.guild; // PLS CHANGE THIS IF YOU WANT GLOBAL COMMAND REPLACE NULL OR GUILD COMMAND REPLACE YOUR DISCORD SERVER ID
-
+const { server } = require('./config.json')
 const rest = new REST({version: '9'}).setToken(token);
 
-if (guildId === 'null'){
+if (server === 'null'){
     (async () => {
         try {
             await rest.put(
