@@ -21,7 +21,7 @@
 
 # 설치법
 
-1. ```npm install requrement.txt```를 실행하여 필수 라이브러리를 다운받는다
+1. ~~```npm install requrement.txt```를 실행하여 필수 라이브러리를 다운받는다~~
 
 2. config.env에 있는 token,client,guild를 알맞게 수정한다 token은 디스코드 봇 토큰이고 client는 봇 클라이언트 아이디, guild는 디스코드 서버 ID이다(전체용으로 할꺼면 쌍따옴표 포함하고`"null"`을 쓰세요.)
 
