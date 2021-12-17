@@ -2,9 +2,7 @@ const { Client, MessageEmbed, MessageActionRow, MessageButton} = require('discor
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES"], partials: ["CHANNEL"] });
 const axios = require('axios');
 const fs = require('fs');
-const { token, client } = require('./config.json')
-const token = process.env.token;
-const client_id = process.env.client;
+const { token, client_id } = require('./config.json')
 client.once('ready', () => {
     console.log("준비됨!");
 });
@@ -16,25 +14,55 @@ client.on('interactionCreate', async interaction => {
     let data;
     let dt;
     if (interaction.commandName === "상점확인") {
+        let access;
+        const id = interaction.options.getString('아이디');
+        const pw = interaction.options.getString('비밀번호');
         const region = interaction.options.getString('지역');
-        dt = fs.readFileSync(`./data/${interaction.user.id}.json`, 'utf-8')
-        jsdt = JSON.parse(dt);
-        data = await getData(jsdt["id"], jsdt["pw"]);
-        if (data["error"] === true){
-            interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
-            return;
+        fs.access(`./data/${interaction.user.id}.json`,fs.constants.F_OK, (err) => {
+            access = !err;
+        })
+        if (id != null && pw != null){
+            data = await getData(id,pw);
+            if (data["error"] === true) {
+                interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
+                return;
+            }
+            interaction.reply({content: "잠시후 나오는 결과를 확인해 주세요!", ephemeral: true})
+            let shop = await getShop(data["userId"], data["ent_token"], data["accessToken"], region);
+            for (let i = 0; i < 4; i++) {
+                let item = shop[i];
+                let embed = new MessageEmbed()
+                    .setTitle(item["displayName"])
+                    .setImage(item["displayIcon"])
+                    .setAuthor(interaction.user.username, interaction.user.avatarURL())
+                    .addField('지역', region)
+                interaction.channel.send({embeds: [embed]});
+            }
+        }else{
+            if (access) {
+                dt = fs.readFileSync(`./data/${interaction.user.id}.json`, 'utf-8')
+                jsdt = JSON.parse(dt);
+                data = await getData(jsdt["id"], jsdt["pw"]);
+                if (data["error"] === true) {
+                    interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
+                    return;
+                }
+                interaction.reply("곧 나오는 결과를 확인해 주세요!")
+                let shop = await getShop(data["userId"], data["ent_token"], data["accessToken"], region);
+                for (let i = 0; i < 4; i++) {
+                    let item = shop[i];
+                    let embed = new MessageEmbed()
+                        .setTitle(item["displayName"])
+                        .setImage(item["displayIcon"])
+                        .setAuthor(interaction.user.username, interaction.user.avatarURL())
+                        .addField('지역', region)
+                    interaction.channel.send({embeds: [embed]});
+                }
+            } else {
+                interaction.reply("파일이 존재하지 않습니다!");
+            }
         }
-        interaction.reply("곧 나오는 결과를 확인해 주세요!")
-        let shop = await getShop(data["userId"], data["ent_token"], data["accessToken"], region);
-        for (let i = 0; i < 4; i++) {
-            let item = shop[i];
-            let embed = new MessageEmbed()
-                .setTitle(item["displayName"])
-                .setImage(item["displayIcon"])
-                .setAuthor(interaction.user.username, interaction.user.avatarURL())
-                .addField('지역',region)
-            interaction.channel.send({embeds: [embed]});
-        }
+
     }
 
     if (interaction.commandName === "탈퇴"){
