@@ -18,9 +18,13 @@ client.on('interactionCreate', async interaction => {
         const id = interaction.options.getString('아이디');
         const pw = interaction.options.getString('비밀번호');
         const region = interaction.options.getString('지역');
-        fs.access(`./data/${interaction.user.id}.json`,fs.constants.F_OK, (err) => {
-            access = !err;
-        })
+        try{
+            fs.accessSync(`./data/${interaction.user.id}.json`,fs.constants.F_OK)
+            access = true
+        } catch (e) {
+            access = false
+        }
+        console.log(access)
         if (id != null && pw != null){
             data = await getData(id,pw);
             if (data["error"] === true) {

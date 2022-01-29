@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="276ad3ca-ded5-4597-8f24-a62197c74e7a" name="변경" comment="✨Update" />
+    <list default="true" id="276ad3ca-ded5-4597-8f24-a62197c74e7a" name="변경" comment="✨Update">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -19,6 +28,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="21829nvjv91YGsBbyx8zj5Wi1eN" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -31,8 +43,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="17.1.0" />
-    <property name="javascript.nodejs.core.library.typings.version" value="16.11.8" />
+    <property name="javascript.nodejs.core.library.configured.version" value="17.3.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="17.0.13" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/index.js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -42,7 +54,7 @@
     <property name="project.structure.last.edited" value="문제" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RunManager">
@@ -69,6 +81,7 @@
       <workItem from="1638512007159" duration="1149000" />
       <workItem from="1638513195240" duration="868000" />
       <workItem from="1638746359280" duration="301000" />
+      <workItem from="1643442059817" duration="431000" />
     </task>
     <task id="LOCAL-00001" summary="✨Add Valorant Shop API">
       <created>1637310396773</created>
@@ -177,7 +190,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="✨Add Valorant Shop API" />
