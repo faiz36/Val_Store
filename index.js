@@ -24,7 +24,6 @@ client.on('interactionCreate', async interaction => {
         } catch (e) {
             access = false
         }
-        console.log(access)
         if (id != null && pw != null){
             data = await getData(id,pw);
             if (data["error"] === true) {

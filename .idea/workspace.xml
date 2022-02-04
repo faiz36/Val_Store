@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="276ad3ca-ded5-4597-8f24-a62197c74e7a" name="변경" comment="✨Update">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +78,8 @@
       <workItem from="1638512007159" duration="1149000" />
       <workItem from="1638513195240" duration="868000" />
       <workItem from="1638746359280" duration="301000" />
-      <workItem from="1643442059817" duration="431000" />
+      <workItem from="1643442059817" duration="931000" />
+      <workItem from="1643963770792" duration="72000" />
     </task>
     <task id="LOCAL-00001" summary="✨Add Valorant Shop API">
       <created>1637310396773</created>
@@ -174,7 +172,21 @@
       <option name="project" value="LOCAL" />
       <updated>1638746656432</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="✨Edited Error">
+      <created>1643442564476</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1643442564476</updated>
+    </task>
+    <task id="LOCAL-00015" summary="✨Update">
+      <created>1643442605347</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1643442605347</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +209,7 @@
     <MESSAGE value="✨Change /로그인, /상점확인" />
     <MESSAGE value="✨Change README.md" />
     <MESSAGE value="✨Update /탈퇴 Service" />
+    <MESSAGE value="✨Edited Error" />
     <MESSAGE value="✨Update" />
     <option name="LAST_COMMIT_MESSAGE" value="✨Update" />
   </component>
