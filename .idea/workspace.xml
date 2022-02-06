@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="276ad3ca-ded5-4597-8f24-a62197c74e7a" name="변경" comment="✨Add Encryption, Decryption">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +27,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -43,6 +51,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="17.3.0" />
     <property name="javascript.nodejs.core.library.typings.version" value="17.0.13" />
+    <property name="js.last.introduce.type" value="CONST" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -83,7 +92,7 @@
       <workItem from="1643963770792" duration="72000" />
       <workItem from="1643963874985" duration="514000" />
       <workItem from="1644132617280" duration="19000" />
-      <workItem from="1644141446135" duration="4213000" />
+      <workItem from="1644141446135" duration="6128000" />
     </task>
     <task id="LOCAL-00001" summary="✨Add Valorant Shop API">
       <created>1637310396773</created>
@@ -211,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644144046692</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="✨Edit README.md">
+      <created>1644145975541</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1644145975541</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +245,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="✨Add Valorant Shop API" />
     <MESSAGE value="✨Add Embed Text" />
     <MESSAGE value="✨Change /로그인, /상점확인" />
@@ -237,7 +254,8 @@
     <MESSAGE value="✨Edited Error" />
     <MESSAGE value="✨Update" />
     <MESSAGE value="✨Add Encryption, Decryption" />
-    <option name="LAST_COMMIT_MESSAGE" value="✨Add Encryption, Decryption" />
+    <MESSAGE value="✨Edit README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="✨Edit README.md" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

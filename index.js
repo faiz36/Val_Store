@@ -3,9 +3,19 @@ const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAG
 const axios = require('axios');
 const fs = require('fs');
 const { token, client_id } = require('./config.json')
-var ncrypt = require("ncrypt-js");
-client.once('ready', () => {
+const ncrypt = require("ncrypt-js");
+let amount = 0
+client.once('ready', client => {
     console.log("준비됨!");
+    let repeat = setInterval(()=>{
+        if (amount === 0){
+            client.user.setActivity('도움말 명령어는 /도움말 로 확인하세요!',{type: "PLAYING"})
+            amount = 1
+        }else if (amount === 1){
+            client.user.setActivity('/상점확인 명령어로 상점을 확인해보세요!',{type: "PLAYING"})
+            amount = 0
+        }
+    },1000*60)
 });
 
 client.on('interactionCreate', async interaction => {
