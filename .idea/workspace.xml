@@ -51,7 +51,7 @@
     <property name="project.structure.last.edited" value="문제" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+    <property name="settings.editor.selected.configurable" value="upsource.project.settings" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RunManager">
@@ -80,6 +80,8 @@
       <workItem from="1638746359280" duration="301000" />
       <workItem from="1643442059817" duration="931000" />
       <workItem from="1643963770792" duration="72000" />
+      <workItem from="1643963874985" duration="514000" />
+      <workItem from="1644132617280" duration="19000" />
     </task>
     <task id="LOCAL-00001" summary="✨Add Valorant Shop API">
       <created>1637310396773</created>
@@ -186,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643442605347</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="✨Update">
+      <created>1643963934005</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1643963934005</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -109,11 +109,14 @@ client.on('interactionCreate', async int => {
     const yes = i => i.custom_id === 'yes' && i.user.id === client_id;
     const no = i => i.custom_id === 'no' && i.user.id === client_id;
 
-    const ycollector = int.channel.createMessageComponentCollector({ yes, time: 1000*10});
+    const ycollector = int.channel.createMessageComponentCollector({ yes, time: 15000});
     const ncollector = int.channel.createMessageComponentCollector({ no });
+    const wait = require('util').promisify(setTimeout);
 
     ycollector.on('collect', async int => {
         if (int.customId === 'yes') {
+            await int.deferUpdate();
+            await wait(4000);
             fs.unlink(`./data/${int.user.id}.json`,async function (err){
                 if (err){
                     await int.update({content: "이미 존재하지 않습니다!",components: []})
@@ -126,6 +129,8 @@ client.on('interactionCreate', async int => {
 
     ncollector.on('collect', async int => {
         if (int.customId === 'no'){
+            await int.deferUpdate();
+            await wait(4000);
             await int.update({content: "취소되었습니다!",components: []})
         }
     })
