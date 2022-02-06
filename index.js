@@ -3,6 +3,7 @@ const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAG
 const axios = require('axios');
 const fs = require('fs');
 const { token, client_id } = require('./config.json')
+var ncrypt = require("ncrypt-js");
 client.once('ready', () => {
     console.log("준비됨!");
 });
@@ -13,19 +14,20 @@ client.on('interactionCreate', async interaction => {
 
     let data;
     let dt;
+    let jsdt;
     if (interaction.commandName === "상점확인") {
         let access;
         const id = interaction.options.getString('아이디');
         const pw = interaction.options.getString('비밀번호');
         const region = interaction.options.getString('지역');
-        try{
-            fs.accessSync(`./data/${interaction.user.id}.json`,fs.constants.F_OK)
+        try {
+            fs.accessSync(`./data/${interaction.user.id}.json`, fs.constants.F_OK)
             access = true
         } catch (e) {
             access = false
         }
-        if (id != null && pw != null){
-            data = await getData(id,pw);
+        if (id != null && pw != null) {
+            data = await getData(id, pw);
             if (data["error"] === true) {
                 interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
                 return;
@@ -41,11 +43,14 @@ client.on('interactionCreate', async interaction => {
                     .addField('지역', region)
                 interaction.channel.send({embeds: [embed]});
             }
-        }else{
+        } else {
             if (access) {
                 dt = fs.readFileSync(`./data/${interaction.user.id}.json`, 'utf-8')
                 jsdt = JSON.parse(dt);
-                data = await getData(jsdt["id"], jsdt["pw"]);
+                var nobj = new ncrypt(interaction.user.id);
+                const id = nobj.decrypt(jsdt["id"])
+                const pw = nobj.decrypt(jsdt["pw"])
+                data = await getData(id,pw);
                 if (data["error"] === true) {
                     interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
                     return;
@@ -66,6 +71,21 @@ client.on('interactionCreate', async interaction => {
             }
         }
 
+    }
+
+    if (interaction.commandName === "도움말"){
+        let embed = new MessageEmbed()
+            .setTitle("Val Store의 도움말 입니다!")
+            .setDescription("{}는 필수 항목, []는 선택 항목입니다!")
+            .setColor("6E9C57")
+            .addFields(
+                { name: "/로그인 {아이디} {비밀번호}", value: "서버에 자신의 발로란트 아이디 비밀번호를 저장합니다."},
+                { name: "/상점확인 {지역} [아이디] [비밀번호]", value: "발로란트 상점을 확인합니다! {지역}은 서버 위치를 확인하고 [아이디],[비밀번호]는 1회용으로(보안성) 로그인해 확인합니다."},
+                { name: "/탈퇴", value: "서버에서 자신의 로그인 정보를 삭제합니다."},
+                { name: "/도움말", value: "도움말을 출력합니다."}
+            )
+            .setThumbnail("https://cdn.discordapp.com/app-icons/909941322482339920/29c60fdf67bfde572c1ee5b02fa0c1ae.png")
+        interaction.reply({embeds: [embed]})
     }
 
     if (interaction.commandName === "탈퇴"){
@@ -89,11 +109,13 @@ client.on('interactionCreate', async interaction => {
 
         const id = interaction.options.getString('아이디');
         const pw = interaction.options.getString('비밀번호');
+        var nobj = new ncrypt(interaction.user.id)
+        const enid = nobj.encrypt(id)
+        const enpw = nobj.encrypt(pw)
         let data = {
-            id: id,
-            pw: pw
+            id: enid,
+            pw: enpw
         }
-
         const jsonData = JSON.stringify(data);
         fs.writeFile(`./data/${interaction.user.id}.json`,jsonData,function (err) {
             if (err) console.log(err);
