@@ -4,7 +4,9 @@ const axios = require('axios');
 const fs = require('fs');
 const { token, client_id } = require('./config.json')
 const ncrypt = require("ncrypt-js");
+const {access} = require("fs");
 let amount = 0
+var offers = {}
 client.once('ready', client => {
     console.log("준비됨!");
     let repeat = setInterval(()=>{
@@ -50,6 +52,7 @@ client.on('interactionCreate', async interaction => {
                     .setTitle(item["displayName"])
                     .setImage(item["displayIcon"])
                     .setAuthor(interaction.user.username, interaction.user.avatarURL())
+                    .addField('가격', item["price"].toString()+"VP")
                     .addField('지역', region)
                 interaction.channel.send({embeds: [embed]});
             }
@@ -73,6 +76,7 @@ client.on('interactionCreate', async interaction => {
                         .setTitle(item["displayName"])
                         .setImage(item["displayIcon"])
                         .setAuthor(interaction.user.username, interaction.user.avatarURL())
+                        .addField('가격', item["price"].toString()+"VP")
                         .addField('지역', region)
                     interaction.channel.send({embeds: [embed]});
                 }
@@ -278,6 +282,8 @@ async function getShop(userid, ent_token, access_token, region) {
 
     var singleItems = shop.SkinsPanelLayout.SingleItemOffers;
 
+    await loadOffers(userid, ent_token, access_token, region)
+
     for (var i = 0; i < singleItems.length; i++) {
         singleItems[i] = (
             (
@@ -286,7 +292,30 @@ async function getShop(userid, ent_token, access_token, region) {
                     method: "GET",
                 })
             ).data
-        ).data;
+    ).data;
+        singleItems[i].price = offers[singleItems[i].uuid];
     }
+
     return singleItems;
 }
+
+async function loadOffers(userid,ent_token,access_token,region) {
+    let response = (
+        await axios({
+            url: `https://pd.${region}.a.pvp.net/store/v1/offers`,
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Riot-Entitlements-JWT": ent_token,
+                Authorization: `Bearer ${access_token}`,
+            },
+            withCredentials: true,
+        })
+    ).data;
+
+    for (var i = 0; i < response.Offers.length; i++) {
+        let offer = response.Offers[i];
+        offers[offer.OfferID] = offer.Cost["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"];
+    }
+}
+
