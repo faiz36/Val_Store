@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="276ad3ca-ded5-4597-8f24-a62197c74e7a" name="변경" comment="✨Add Encryption, Decryption">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +93,8 @@
       <workItem from="1643963874985" duration="514000" />
       <workItem from="1644132617280" duration="19000" />
       <workItem from="1644141446135" duration="6335000" />
+      <workItem from="1644697157596" duration="2359000" />
+      <workItem from="1646126499429" duration="3540000" />
     </task>
     <task id="LOCAL-00001" summary="✨Add Valorant Shop API">
       <created>1637310396773</created>
@@ -232,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644154936404</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="✨Add Item Price">
+      <created>1644668731786</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1644668731786</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,7 +272,8 @@
     <MESSAGE value="✨Add Encryption, Decryption" />
     <MESSAGE value="✨Edit README.md" />
     <MESSAGE value="✨Add Activity" />
-    <option name="LAST_COMMIT_MESSAGE" value="✨Add Activity" />
+    <MESSAGE value="✨Add Item Price" />
+    <option name="LAST_COMMIT_MESSAGE" value="✨Add Item Price" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

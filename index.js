@@ -116,7 +116,7 @@ client.on('interactionCreate', async interaction => {
                     .setLabel('아니요')
                     .setStyle('DANGER')
             );
-        await interaction.reply({content: "탈퇴하시겠습니까?(**10초 이내로 선택해주세요!**)",components: [row]})
+        await interaction.reply({content: "탈퇴하시겠습니까?",components: [row]})
     }
 
     if (interaction.commandName === "로그인") {
@@ -142,34 +142,28 @@ client.on('interactionCreate', async interaction => {
 client.on('interactionCreate', async int => {
     if (!int.isButton()) return;
 
-    const yes = i => i.custom_id === 'yes' && i.user.id === client_id;
-    const no = i => i.custom_id === 'no' && i.user.id === client_id;
+    const filter = i => {
+        i.deferUpdate();
+        return i.user.id === interaction.user.id;
+    };
 
-    const ycollector = int.channel.createMessageComponentCollector({ yes, time: 15000});
-    const ncollector = int.channel.createMessageComponentCollector({ no });
-    const wait = require('util').promisify(setTimeout);
-
-    ycollector.on('collect', async int => {
-        if (int.customId === 'yes') {
-            await int.deferUpdate();
-            await wait(4000);
-            fs.unlink(`./data/${int.user.id}.json`,async function (err){
-                if (err){
-                    await int.update({content: "이미 존재하지 않습니다!",components: []})
-                }else{
-                    await int.update({content: "삭제되었습니다!",components: []})
+    int.channel.awaitMessageComponent(filter,{ component_type: 'SELECT_MENU', time: 3000})
+        .then(int => {
+                if (int.customId === "yes"){
+                    fs.unlink(`./data/${int.user.id}.json`,function (err){
+                        if (err){
+                            int.update({content: "이미 존재하지 않습니다!", components: []})
+                        }else{
+                            int.update({content: "삭제되었습니다!", components: []})
+                        }
+                    })
+                }else if(int.customId === "no"){
+                    int.update({content: "취소되었습니다!", components: []})
                 }
-            })
-        }
-    });
-
-    ncollector.on('collect', async int => {
-        if (int.customId === 'no'){
-            await int.deferUpdate();
-            await wait(4000);
-            await int.update({content: "취소되었습니다!",components: []})
-        }
-    })
+        })
+        .catch(err => {
+            err.update({content:"시간이 지나 취소되었습니다",components: []})
+        })
 })
 
 client.login(token);
