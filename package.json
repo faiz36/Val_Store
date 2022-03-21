@@ -25,6 +25,7 @@
     "dotenv": "^10.0.0",
     "fs": "^0.0.1-security",
     "ncrypt": "^1.0.7",
-    "ncrypt-js": "^2.0.0"
+    "ncrypt-js": "^2.0.0",
+    "package.json": "^2.0.1"
   }
 }

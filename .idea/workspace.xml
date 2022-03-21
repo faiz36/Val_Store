@@ -8,6 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +51,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="17.3.0" />
-    <property name="javascript.nodejs.core.library.typings.version" value="17.0.13" />
+    <property name="javascript.nodejs.core.library.configured.version" value="17.0.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="17.0.0" />
     <property name="js.last.introduce.type" value="CONST" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -95,6 +97,8 @@
       <workItem from="1644141446135" duration="6335000" />
       <workItem from="1644697157596" duration="2359000" />
       <workItem from="1646126499429" duration="3540000" />
+      <workItem from="1647838103118" duration="675000" />
+      <workItem from="1647838908993" duration="342000" />
     </task>
     <task id="LOCAL-00001" summary="✨Add Valorant Shop API">
       <created>1637310396773</created>
@@ -259,6 +263,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
