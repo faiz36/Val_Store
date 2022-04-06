@@ -4,7 +4,8 @@ const axios = require('axios');
 const fs = require('fs');
 const { token, client_id } = require('./config.json')
 const ncrypt = require("ncrypt-js");
-const {access} = require("fs");
+const ValAPI = require("./ValorantAPI")
+let {access} = require("fs");
 let amount = 0
 var offers = {}
 client.once('ready', client => {
@@ -40,13 +41,13 @@ client.on('interactionCreate', async interaction => {
                 access = false
             }
             if (id != null && pw != null) {
-                data = await getData(id, pw);
+                data = await ValAPI.getData(id, pw);
                 if (data["error"] === true) {
                     interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
                     return;
                 }
                 interaction.reply({content: "잠시후 나오는 결과를 확인해 주세요!", ephemeral: true})
-                let shop = await getShop(data["userId"], data["ent_token"], data["accessToken"], region);
+                let shop = await ValAPI.getShop(data["userId"],data["ent_token"],data["access_token"],region);
                 for (let i = 0; i < 4; i++) {
                     let item = shop[i];
                     let embed = new MessageEmbed()
@@ -64,13 +65,13 @@ client.on('interactionCreate', async interaction => {
                     var nobj = new ncrypt(interaction.user.id);
                     const id = nobj.decrypt(jsdt["id"])
                     const pw = nobj.decrypt(jsdt["pw"])
-                    data = await getData(id, pw);
+                    data = await ValAPI.getData(id, pw);
                     if (data["error"] === true) {
                         interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
                         return;
                     }
                     interaction.reply("곧 나오는 결과를 확인해 주세요!")
-                    let shop = await getShop(data["userId"], data["ent_token"], data["accessToken"], region);
+                    let shop = await ValAPI.getShop(data["userId"], data["ent_token"], data["accessToken"], region);
                     for (let i = 0; i < 4; i++) {
                         let item = shop[i];
                         let embed = new MessageEmbed()
@@ -89,6 +90,68 @@ client.on('interactionCreate', async interaction => {
         }catch (e) {
             interaction.reply("에러가 발생하였습니다! 다시한번 시도해 주세요! 반복된다면 관리자에게 문의해 주세요!\n에러목록`" + e+"`")
         }}
+
+    if (interaction.commandName === "야시장"){
+        let access;
+        const id = interaction.options.getString('아이디');
+        const pw = interaction.options.getString('비밀번호');
+        const region = interaction.options.getString('지역');
+
+        try {
+            fs.accessSync(`./data/${interaction.user.id}.json`, fs.constants.F_OK)
+            access = true
+        } catch (e) {
+            access = false
+        }
+
+        if (id != null && pw != null) {
+            data = await getData(id, pw);
+            if (data["error"] === true) {
+                interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
+                return;
+            }
+            interaction.reply({content: "잠시후 나오는 결과를 확인해 주세요!", ephemeral: true})
+            let shop = await getNightMarket(data["userId"], data["ent_token"], data["accessToken"], region);
+            for (let i = 0; i < 4; i++) {
+                let item = shop[i];
+                let embed = new MessageEmbed()
+                    .setTitle(item["displayName"])
+                    .setImage(item["displayIcon"])
+                    .setAuthor(interaction.user.username, interaction.user.avatarURL())
+                    .addField('가격', "<:vp:954160736828018748>" + item["price"].toString())
+                    .addField('지역', region)
+                interaction.channel.send({embeds: [embed]});
+            }
+        } else {
+            if (access) {
+                dt = fs.readFileSync(`./data/${interaction.user.id}.json`, 'utf-8')
+                jsdt = JSON.parse(dt);
+                var nobj = new ncrypt(interaction.user.id);
+                const id = nobj.decrypt(jsdt["id"])
+                const pw = nobj.decrypt(jsdt["pw"])
+                data = await getData(id, pw);
+                if (data["error"] === true) {
+                    interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
+                    return;
+                }
+                interaction.reply("곧 나오는 결과를 확인해 주세요!")
+                let shop = await getNightMarket(data["userId"], data["ent_token"], data["accessToken"], region);
+                for (let i = 0; i < 4; i++) {
+                    let item = shop[i];
+                    let embed = new MessageEmbed()
+                        .setTitle(item["displayName"])
+                        .setImage(item["displayIcon"])
+                        .setAuthor(interaction.user.username, interaction.user.avatarURL())
+                        .addField('가격', "<:vp:954160736828018748>" + item["price"].toString())
+                        .addField('지역', region)
+                    interaction.channel.send({embeds: [embed]});
+                }
+            } else {
+                interaction.reply("파일이 존재하지 않습니다!");
+            }
+        }
+
+    }
 
     if (interaction.commandName === "도움말"){
         let embed = new MessageEmbed()
@@ -170,149 +233,3 @@ client.on('interactionCreate', async int => {
 })
 
 client.login(token);
-
-async function getData(username, pw) {
-    let accessToken;
-    let ent_token;
-    let userId;
-    let expiresIn;
-    let error;
-    await axios({
-        url: "https://auth.riotgames.com/api/v1/authorization",
-        method: "POST",
-        data: {
-            client_id: "play-valorant-web-prod",
-            nonce: "1",
-            redirect_uri: "https://playvalorant.com/opt_in",
-            response_type: "token id_token",
-        },
-        headers: {
-            "Content-Type": "application/json",
-        },
-        withCredentials: true,
-    }).then(async (response) => {
-        let res = (
-            await axios({
-                url: "https://auth.riotgames.com/api/v1/authorization",
-                method: "PUT",
-                data: {
-                    type: "auth",
-                    username: username,
-                    password: pw,
-                },
-                headers: {
-                    "Content-Type": "application/json",
-                    Cookie: response.headers["set-cookie"],
-                },
-                withCredentials: true,
-            })
-        ).data;
-        if (res.error === 'auth_failure') {
-            error = true
-            return;
-        }
-        const uri = res["response"]["parameters"]["uri"];
-        const regexResult = uri.match(
-            /access_token=((?:[a-zA-Z]|\d|\.|-|_)*).*id_token=((?:[a-zA-Z]|\d|\.|-|_)*).*expires_in=(\d*)/
-        );
-        accessToken = regexResult[1];
-        expiresIn = regexResult[3];
-
-        const entitlementsToken = (
-            (
-                await axios({
-                    url: "https://entitlements.auth.riotgames.com/api/token/v1",
-                    method: "POST",
-                    data: {},
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                    withCredentials: true,
-                })
-            ).data
-        )
-        ent_token = entitlementsToken["entitlements_token"];
-        userId = (
-            (
-                await axios({
-                    url: "https://auth.riotgames.com/userinfo",
-                    method: "POST",
-                    data: {},
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                    withCredentials: true,
-                })
-            ).data
-        ).sub;
-    })
-    if (error === true){
-        return {
-            error: true
-        }
-    }else{
-        return {
-            accessToken,
-            ent_token,
-            userId,
-            expiresIn,
-            error: false
-        }
-    }
-}
-
-async function getShop(userid, ent_token, access_token, region) {
-    const shop = (
-        await axios({
-            url: `https://pd.${region}.a.pvp.net/store/v2/storefront/${userid}`,
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "X-Riot-Entitlements-JWT": ent_token,
-                Authorization: `Bearer ${access_token}`,
-            },
-            withCredentials: true,
-        })
-    ).data;
-
-    var singleItems = shop.SkinsPanelLayout.SingleItemOffers;
-
-    await loadOffers(userid, ent_token, access_token, region)
-
-    for (var i = 0; i < singleItems.length; i++) {
-        singleItems[i] = (
-            (
-                await axios({
-                    url: `https://valorant-api.com/v1/weapons/skinlevels/${singleItems[i]}`,
-                    method: "GET",
-                })
-            ).data
-    ).data;
-        singleItems[i].price = offers[singleItems[i].uuid];
-    }
-
-    return singleItems;
-}
-
-async function loadOffers(userid,ent_token,access_token,region) {
-    let response = (
-        await axios({
-            url: `https://pd.${region}.a.pvp.net/store/v1/offers`,
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "X-Riot-Entitlements-JWT": ent_token,
-                Authorization: `Bearer ${access_token}`,
-            },
-            withCredentials: true,
-        })
-    ).data;
-
-    for (var i = 0; i < response.Offers.length; i++) {
-        let offer = response.Offers[i];
-        offers[offer.OfferID] = offer.Cost["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"];
-    }
-}
-
