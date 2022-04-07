@@ -125,6 +125,7 @@ async function getShop(userid, ent_token, access_token, region) {
     return singleItems;
 }
 async function getNightMarket(userid,ent_token,access_token,region){
+  let error = false;
 
     let res =( await axios({
         url: `https://pd.${region}.a.pvp.net/store/v2/storefront/${userid}`,
@@ -136,9 +137,12 @@ async function getNightMarket(userid,ent_token,access_token,region){
         },
         withCredentials: true
     })).data
+    
+    if(res.BonusStore.BonusStoreOffers === undefined){
+      return [];
+    }
 
-    console.log(res.FeaturedBundle.Bundles);
-    var nm = res.FeaturedBundle.Bundles;
+    var nm = res.BonusStore.BonusStoreOffers;
 
     var arr = [];
     for (var i = 0; i < nm.length; i++) {
@@ -160,7 +164,7 @@ async function getNightMarket(userid,ent_token,access_token,region){
 
     cachedNightShop = arr;
 
-    return singleNightShopItem;
+    return arr;
 
 }
 

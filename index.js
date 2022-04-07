@@ -105,21 +105,26 @@ client.on('interactionCreate', async interaction => {
         }
 
         if (id != null && pw != null) {
-            data = await getData(id, pw);
+            data = await ValAPI.getData(id, pw);
             if (data["error"] === true) {
                 interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
                 return;
             }
             interaction.reply({content: "잠시후 나오는 결과를 확인해 주세요!", ephemeral: true})
-            let shop = await getNightMarket(data["userId"], data["ent_token"], data["accessToken"], region);
-            for (let i = 0; i < 4; i++) {
+            let shop = await ValAPI.getNightMarket(data["userId"], data["ent_token"], data["accessToken"], region);
+            if (shop == []){
+              interaction.reply("야시장이 오픈되지 않았습니다!")
+              return;
+            }
+            for (let i = 0; i < 5; i++) {
                 let item = shop[i];
                 let embed = new MessageEmbed()
                     .setTitle(item["displayName"])
-                    .setImage(item["displayIcon"])
-                    .setAuthor(interaction.user.username, interaction.user.avatarURL())
-                    .addField('가격', "<:vp:954160736828018748>" + item["price"].toString())
-                    .addField('지역', region)
+                        .setImage(item["displayIcon"])
+                        .setAuthor(interaction.user.username, interaction.user.avatarURL())
+                        .addField('가격', "<:vp:954160736828018748>" + item["discountPrice"].toString())
+                        .addField('할인율',item["discountPercent"]+"%")
+                        .addField('지역', region)
                 interaction.channel.send({embeds: [embed]});
             }
         } else {
@@ -129,20 +134,25 @@ client.on('interactionCreate', async interaction => {
                 var nobj = new ncrypt(interaction.user.id);
                 const id = nobj.decrypt(jsdt["id"])
                 const pw = nobj.decrypt(jsdt["pw"])
-                data = await getData(id, pw);
+                data = await ValAPI.getData(id, pw);
                 if (data["error"] === true) {
                     interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
                     return;
                 }
                 interaction.reply("곧 나오는 결과를 확인해 주세요!")
-                let shop = await getNightMarket(data["userId"], data["ent_token"], data["accessToken"], region);
-                for (let i = 0; i < 4; i++) {
+                let shop = await ValAPI.getNightMarket(data["userId"], data["ent_token"], data["accessToken"], region);
+                if (shop == []){
+                  interaction.reply("야시장이 오픈되지 않았습니다!")
+                  return;
+                }
+                for (let i = 0; i < 5; i++) {
                     let item = shop[i];
                     let embed = new MessageEmbed()
                         .setTitle(item["displayName"])
                         .setImage(item["displayIcon"])
                         .setAuthor(interaction.user.username, interaction.user.avatarURL())
-                        .addField('가격', "<:vp:954160736828018748>" + item["price"].toString())
+                        .addField('가격', "<:vp:954160736828018748>" + item["discountPrice"].toString())
+                        .addField('할인율',item["discountPercent"]+"%")
                         .addField('지역', region)
                     interaction.channel.send({embeds: [embed]});
                 }
