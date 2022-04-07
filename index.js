@@ -171,8 +171,9 @@ client.on('interactionCreate', async interaction => {
             .addFields(
                 { name: "/로그인 {아이디} {비밀번호}", value: "서버에 자신의 발로란트 아이디 비밀번호를 저장합니다."},
                 { name: "/상점확인 {지역} [아이디] [비밀번호]", value: "발로란트 상점을 확인합니다! {지역}은 서버 위치를 확인하고 [아이디],[비밀번호]는 1회용으로(보안성) 로그인해 확인합니다."},
-                { name: "/탈퇴", value: "서버에서 자신의 로그인 정보를 삭제합니다."},
+                { name: "/야시장 {지역} [아이디] [비밀번호]", value: "발로란트 야시장을 확인합니다! {지역}은 서버 위치를 확인하고 [아이디],[비밀번호]는 1회용으로(보안성) 로그인해 확인합니다.(야시장이 열릴때만 가능합니다)"},
                 { name: "/도움말", value: "도움말을 출력합니다."}
+
             )
             .setThumbnail("https://cdn.discordapp.com/app-icons/909941322482339920/29c60fdf67bfde572c1ee5b02fa0c1ae.png")
         interaction.reply({embeds: [embed]})
