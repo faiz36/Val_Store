@@ -116,7 +116,7 @@ client.on('interactionCreate', async interaction => {
               interaction.reply("야시장이 오픈되지 않았습니다!")
               return;
             }
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 6; i++) {
                 let item = shop[i];
                 let embed = new MessageEmbed()
                     .setTitle(item["displayName"])
@@ -145,7 +145,7 @@ client.on('interactionCreate', async interaction => {
                   interaction.reply("야시장이 오픈되지 않았습니다!")
                   return;
                 }
-                for (let i = 0; i < 5; i++) {
+                for (let i = 0; i < 6; i++) {
                     let item = shop[i];
                     let embed = new MessageEmbed()
                         .setTitle(item["displayName"])
