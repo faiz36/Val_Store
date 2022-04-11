@@ -37,7 +37,7 @@ discord-api-types/v9
 
 # 봇 초대
 
-* 봇 초대 링크 : (Invite)[https://discord.com/api/oauth2/authorize?client_id=909941322482339920&permissions=8&scope=applications.commands%20bot]
+* 봇 초대 링크 : [Invite](https://discord.com/api/oauth2/authorize?client_id=909941322482339920&permissions=8&scope=applications.commands%20bot)
 
 # 설치법
 
