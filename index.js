@@ -40,7 +40,7 @@ client.on('interactionCreate', async interaction => {
             } catch (e) {
                 access = false
             }
-            if (id != null && pw != null) {
+            if (id === null && pw === null) {
                 data = await ValAPI.getData(id, pw);
                 if (data["error"] === true) {
                     interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
@@ -88,7 +88,7 @@ client.on('interactionCreate', async interaction => {
             }
 
         }catch (e) {
-            interaction.reply("에러가 발생하였습니다! 다시한번 시도해 주세요! 반복된다면 관리자에게 문의해 주세요!\n에러목록`" + e+"`")
+            interaction.channel.send("에러가 발생하였습니다! 다시한번 시도해 주세요! 반복된다면 관리자에게 문의해 주세요!\n에러목록`" + e+"`")
         }}
 
     if (interaction.commandName === "야시장"){
