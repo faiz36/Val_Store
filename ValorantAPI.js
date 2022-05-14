@@ -138,8 +138,9 @@ async function getNightMarket(userid,ent_token,access_token,region){
         withCredentials: true
     })).data
     
-    if(res.BonusStore.BonusStoreOffers === undefined){
-      return [];
+    if(!res.BonusStore){
+      error = true;
+      return []
     }
 
     var nm = res.BonusStore.BonusStoreOffers;
@@ -163,9 +164,7 @@ async function getNightMarket(userid,ent_token,access_token,region){
     }
 
     cachedNightShop = arr;
-
-    return arr;
-
+    return {arr,"error": error};
 }
 
 async function loadOffers(userid,ent_token,access_token,region) {

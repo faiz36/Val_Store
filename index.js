@@ -106,13 +106,14 @@ client.on('interactionCreate', async interaction => {
 
         if (id != null && pw != null) {
             data = await ValAPI.getData(id, pw);
+            console.log(data)
             if (data["error"] === true) {
                 interaction.reply("에러가 발생하였습니다! 아이디와 비밀번호를 확인해 주세요!")
                 return;
             }
             interaction.reply({content: "잠시후 나오는 결과를 확인해 주세요!", ephemeral: true})
             let shop = await ValAPI.getNightMarket(data["userId"], data["ent_token"], data["accessToken"], region);
-            if (shop == []){
+            if (shop.error){
               interaction.reply("야시장이 오픈되지 않았습니다!")
               return;
             }
