@@ -113,6 +113,7 @@ client.on('interactionCreate', async interaction => {
             }
             interaction.reply({content: "잠시후 나오는 결과를 확인해 주세요!", ephemeral: true})
             let shop = await ValAPI.getNightMarket(data["userId"], data["ent_token"], data["accessToken"], region);
+            shop = shop.arr
             if (shop.error){
               interaction.reply("야시장이 오픈되지 않았습니다!")
               return;
@@ -142,6 +143,7 @@ client.on('interactionCreate', async interaction => {
                 }
                 interaction.reply("곧 나오는 결과를 확인해 주세요!")
                 let shop = await ValAPI.getNightMarket(data["userId"], data["ent_token"], data["accessToken"], region);
+                shop = shop.arr
                 if (shop == []){
                   interaction.reply("야시장이 오픈되지 않았습니다!")
                   return;
